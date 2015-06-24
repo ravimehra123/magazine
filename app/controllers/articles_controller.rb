@@ -11,7 +11,8 @@ class ArticlesController < ApplicationController
 
   def show
     respond_with(@article)
-    @article = Article.find(params[:id])
+    @comment = Article.comments.build(parent_id: params[:parent_id])
+    
     @comments = @article.comments
 
   end

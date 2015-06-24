@@ -8,9 +8,11 @@ Magazine::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
      root 'home#index'
-     resources 'articles'
-     resources 'comments'
-     #get '/comments/new/(:parent_id)', to: 'comments#new', as: :new_comment
+     resources 'articles' do 
+       resources :comments, only: [:index, :create]
+
+     end 
+     get '/comments/new/(:parent_id)', to: 'comments#new', as: :new_comment
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
